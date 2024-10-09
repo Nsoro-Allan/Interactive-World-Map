@@ -23,6 +23,7 @@ export default function RootLayout({
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js" />
         <Script src="https://datamaps.github.io/scripts/datamaps.world.min.js" />
+        <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
       </head>
       <body className={`${inter.className} bg-gray-900`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
