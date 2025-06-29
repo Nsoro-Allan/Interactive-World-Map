@@ -17,7 +17,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ onCountrySelect }) => {
       try {
         // Specify only the required fields to avoid 400 error
         const response = await fetch(
-          "https://restcountries.com/v3.1/all?fields=name,cca3,population,flags,capital,region"
+          "https://restcountries.com/v3.1/all?fields=name,cca3,population,flags,capital,region,area"
         );
         const data = await response.json();
         setCountries(data);
@@ -68,6 +68,11 @@ const WorldMap: React.FC<WorldMapProps> = ({ onCountrySelect }) => {
               ${
                 country
                   ? `<br/>Population: ${country.population.toLocaleString()}`
+                  : ""
+              }
+              ${
+                country && country.area
+                  ? `<br/>Area: ${country.area.toLocaleString()} km²`
                   : ""
               }
             </div>`;
