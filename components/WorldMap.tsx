@@ -17,7 +17,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ onCountrySelect }) => {
       try {
         // Specify only the required fields to avoid 400 error
         const response = await fetch(
-          "https://restcountries.com/v3.1/all?fields=name,cca3,population,flags,capital,region,area"
+          "https://restcountries.com/v3.1/all?fields=name,cca3,population,flags,capital,continents,area,currencies,latlng,languages"
         );
         const data = await response.json();
         setCountries(data);
@@ -61,8 +61,30 @@ const WorldMap: React.FC<WorldMapProps> = ({ onCountrySelect }) => {
                   : ""
               }
               ${
-                country && country.region
-                  ? `<br/>Region: ${country.region}`
+                country && country.continents
+                  ? `<br/>Continent: ${country.continents[0]}`
+                  : ""
+              }
+              ${
+                country && country.currencies
+                  ? `<br/>Currency: ${Object.values(country.currencies)
+                      .map(
+                        (cur: any) =>
+                          cur.name + (cur.symbol ? ` (${cur.symbol})` : "")
+                      )
+                      .join(", ")}`
+                  : ""
+              }
+              ${
+                country && country.languages
+                  ? `<br/>Languages: ${Object.values(country.languages).join(
+                      ", "
+                    )}`
+                  : ""
+              }
+              ${
+                country && country.latlng
+                  ? `<br/>Country Code: ${country.cca3}`
                   : ""
               }
               ${

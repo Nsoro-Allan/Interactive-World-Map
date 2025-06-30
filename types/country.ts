@@ -17,6 +17,16 @@ export interface Country {
     alt?: string;
   };
   capital?: string[];
-  region: string;
+  continents: string[];
   area?: number;
+  currencies?: {
+    [code: string]: {
+      name: string;
+      symbol?: string;
+    };
+  };
+  languages?: {
+    [key: string]: string;
+  };
+  latlng?: [number, number];
 }
