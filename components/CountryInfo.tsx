@@ -31,7 +31,34 @@ const CountryInfo: React.FC<CountryInfoProps> = ({ country }) => {
         {country.population.toLocaleString()}
       </p>
       <p className="mb-2">
-        <span className="font-semibold">Region:</span> {country.region}
+        <span className="font-semibold">Continent:</span>{" "}
+        {country.continents?.[0] || "N/A"}
+      </p>
+      <p className="mb-2">
+        <span className="font-semibold">Currency:</span>{" "}
+        {country.currencies
+          ? Object.values(country.currencies)
+              .map((cur) => cur.name + (cur.symbol ? ` (${cur.symbol})` : ""))
+              .join(", ")
+          : "N/A"}
+      </p>
+      <p className="mb-2">
+        <span className="font-semibold">Languages:</span>{" "}
+        {country.languages
+          ? Object.values(country.languages).join(", ")
+          : "N/A"}
+      </p>
+      <p className="mb-2">
+        <span className="font-semibold">Calling Code:</span>{" "}
+        {country.idd && country.idd.root
+          ? country.idd.root +
+            (country.idd.suffixes && country.idd.suffixes.length > 0
+              ? country.idd.suffixes[0]
+              : "")
+          : "N/A"}
+      </p>
+      <p className="mb-2">
+        <span className="font-semibold">Country Code:</span> {country.cca3}
       </p>
       {country.flags && (
         <img
