@@ -28,5 +28,8 @@ export interface Country {
   languages?: {
     [key: string]: string;
   };
-  latlng?: [number, number];
+  idd?: {
+    root?: string;
+    suffixes?: string[];
+  };
 }
