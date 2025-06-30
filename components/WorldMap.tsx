@@ -65,42 +65,6 @@ const WorldMap: React.FC<WorldMapProps> = ({ onCountrySelect }) => {
                   ? `<br/>Continent: ${country.continents[0]}`
                   : ""
               }
-              ${
-                country && country.currencies
-                  ? `<br/>Currency: ${Object.values(country.currencies)
-                      .map(
-                        (cur: any) =>
-                          cur.name + (cur.symbol ? ` (${cur.symbol})` : "")
-                      )
-                      .join(", ")}`
-                  : ""
-              }
-              ${
-                country && country.languages
-                  ? `<br/>Languages: ${Object.values(country.languages).join(
-                      ", "
-                    )}`
-                  : ""
-              }
-              ${
-                country && country.idd && country.idd.root
-                  ? `<br/>Calling Code: ${country.idd.root}${
-                      country.idd.suffixes && country.idd.suffixes.length > 0
-                        ? country.idd.suffixes[0]
-                        : ""
-                    }`
-                  : ""
-              }
-              ${
-                country
-                  ? `<br/>Population: ${country.population.toLocaleString()}`
-                  : ""
-              }
-              ${
-                country && country.area
-                  ? `<br/>Area: ${country.area.toLocaleString()} km²`
-                  : ""
-              }
             </div>`;
           },
         },
