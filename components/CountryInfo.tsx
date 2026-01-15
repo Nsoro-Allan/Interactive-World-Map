@@ -1,10 +1,19 @@
 import { Country } from "../types/country";
+import { Button } from "./ui/button";
+import { Download } from "lucide-react";
+import { generateCountryPDF } from "../lib/pdfGenerator";
 
 interface CountryInfoProps {
   country: Country | null;
 }
 
 const CountryInfo: React.FC<CountryInfoProps> = ({ country }) => {
+  const handleExportPDF = async () => {
+    if (country) {
+      await generateCountryPDF(country);
+    }
+  };
+
   if (!country) {
     return (
       <div className="p-6 bg-gray-800 rounded-lg shadow-lg text-white">
@@ -15,7 +24,18 @@ const CountryInfo: React.FC<CountryInfoProps> = ({ country }) => {
 
   return (
     <div className="p-6 bg-gray-800 rounded-lg shadow-lg text-white">
-      <h2 className="text-2xl font-bold mb-4">{country.name.common}</h2>
+      <div className="flex justify-between items-start mb-4">
+        <h2 className="text-2xl font-bold">{country.name.common}</h2>
+        <Button
+          onClick={handleExportPDF}
+          variant="outline"
+          size="sm"
+          className="bg-blue-600 hover:bg-blue-700 text-white border-blue-600 hover:border-blue-700"
+        >
+          <Download className="mr-2 h-4 w-4" />
+          Export PDF
+        </Button>
+      </div>
       <p className="mb-2">
         <span className="font-semibold">Capital:</span>{" "}
         {country.capital?.[0] || "N/A"}
